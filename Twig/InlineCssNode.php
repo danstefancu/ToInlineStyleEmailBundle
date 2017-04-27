@@ -37,14 +37,13 @@ class InlineCssNode extends \Twig_Node
                      ->write(sprintf('echo $context["inlinecss"]->inlineCSS(ob_get_clean(), %s);'."\n", $css))
             ;
         } else {
-            //get path of css
             $compiler->addDebugInfo($this)
                      ->write("ob_start();\n")
-                     ->write('$css = addslashes(file_get_contents(')
+                     ->write('$css = ')
                      ->subcompile($this->getAttribute('css'))
-                     ->raw('));')
+                     ->raw(';')
                      ->subcompile($this->getNode('body'))
-                     ->write('echo $context["inlinecss"]->inlineCSS(ob_get_clean(), $css);'."\n")
+                     ->write('echo $context["inlinecss"]->inlineCSS(ob_get_clean(), $css);' . "\n")
             ;
         }
 
