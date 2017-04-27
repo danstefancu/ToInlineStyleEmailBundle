@@ -20,10 +20,5 @@
     },
     "autoload": {
         "psr-4": { "RobertoTru\\ToInlineStyleEmailBundle\\": "" }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.2-dev"
-        }
     }
 }
