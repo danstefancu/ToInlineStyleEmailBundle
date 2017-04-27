@@ -44,7 +44,8 @@ class InlineCssExtension extends \Twig_Extension implements \Twig_Extension_Glob
         TemplateNameParserInterface $name_parser,
         $kernelRoot,
         $debug = false
-    ) {
+    )
+    {
         $this->inlineCss = $inlineCss;
         $this->locator = $locator;
         $this->name_parser = $name_parser;
@@ -57,7 +58,11 @@ class InlineCssExtension extends \Twig_Extension implements \Twig_Extension_Glob
      */
     public function getTokenParsers()
     {
-        return  array(new InlineCssParser($this->locator, $this->name_parser, $this->kernelRoot . '/../web', $this->debug));
+        return array(
+            new InlineCssParser(
+                $this->locator, $this->name_parser, $this->kernelRoot.'/../web', $this->debug
+            ),
+        );
     }
 
     /**

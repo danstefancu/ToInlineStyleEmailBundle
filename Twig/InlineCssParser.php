@@ -44,7 +44,12 @@ class InlineCssParser extends \Twig_TokenParser
      * @param string $webRoot web root of the project
      * @param bool $debug in debug mode css is not inlined but read on each render
      */
-    public function __construct(FileLocatorInterface $locator, TemplateNameParserInterface $templateNameParser, $webRoot, $debug = false)
+    public function __construct(
+        FileLocatorInterface $locator,
+        TemplateNameParserInterface $templateNameParser,
+        $webRoot,
+        $debug = false
+    )
     {
         $this->locator = $locator;
         $this->templateNameParser = $templateNameParser;
@@ -63,10 +68,15 @@ class InlineCssParser extends \Twig_TokenParser
     {
         $lineNo = $token->getLine();
         $stream = $this->parser->getStream();
-        if($stream->test(Twig_Token::STRING_TYPE)){
-            $css = $this->resolvePath($stream->expect(Twig_Token::STRING_TYPE)->getValue());
-        }else{
-            $css = $this->parser->getExpressionParser()->parseExpression();
+        if ($stream->test(Twig_Token::STRING_TYPE)) {
+            $css = $this->resolvePath(
+                $stream->expect(Twig_Token::STRING_TYPE)
+                       ->getValue()
+            );
+        } else {
+            $css = $this->parser->getExpressionParser()
+                                ->parseExpression()
+            ;
         }
         $stream->expect(Twig_Token::BLOCK_END_TYPE);
         $body = $this->parser->subparse(array($this, 'decideEnd'), true);
@@ -92,7 +102,9 @@ class InlineCssParser extends \Twig_TokenParser
 
     /**
      * Resolve path to absolute if any bundle is mentioned
+     *
      * @param string $path
+     *
      * @return string
      */
     private function resolvePath($path)
