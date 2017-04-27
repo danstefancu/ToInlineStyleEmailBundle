@@ -86,11 +86,11 @@ Paths relative to bundle are supported as well:
 </div>
 {% endinlinecss %}
 ```
-Dynamic variable is supported (Use absolute path with variable with asset or directly with full path to file)
+Dynamic variable is supported 
 
 ``` html
-{% set path = asset('css/email.css', null, true) %}
-{% inlinecss path %}
+{% set included = include('css/email.css.twig') %}
+{% inlinecss included %}
 <div class="foo">
 ...
 </div>
